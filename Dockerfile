@@ -1,8 +1,5 @@
-FROM centos:6
+FROM centos:centos6
 MAINTAINER "Krzysztof Pawlowski" <msciciel@msciciel.eu>
-ENV container docker
-RUN yum -y update; yum clean all;
-RUN yum -y install rsync mc wget vim mtr tcpdump strace python-argparse
+RUN curl -L http://bootstrap.saltstack.com > salt.sh ; sh salt.sh -M; yum clean all
+RUN yum install -y vim; yum clean all
 ADD prompt.sh /etc/profile.d/
-VOLUME [ "/srv/sources" ]
-CMD ["/bin/bash"]
